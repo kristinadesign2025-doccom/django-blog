@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - Мой блог{% endblock %}
+
+{% block content %}
+<article class="post-detail">
+    <h2>{{ post.title }}</h2>
+    <p class="post-meta">Опубликовано: {{ post.date }}</p>
+
+    <div class="post-content">
+        {{ post.content|linebreaks }}
+    </div>
+
+    <div class="post-navigation">
+        <a href="{% url 'blog:home' %}" class="btn">← Вернуться к списку постов</a>
+    </div>
+</article>
+{% endblock %}

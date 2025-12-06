@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Мой блог{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h2>Добро пожаловать в мой блог!</h2>
+    <p>Здесь я делюсь своими мыслями и идеями о программировании и технологиях.</p>
+</div>
+
+<div class="posts">
+    <h3>Последние посты</h3>
+
+    <article class="post-card">
+        <h4><a href="{% url 'blog:post_detail' 1 %}">Введение в Django</a></h4>
+        <p class="post-meta">Опубликовано: 1 декабря 2025</p>
+        <p>Django - это мощный веб-фреймворк для Python, который позволяет быстро создавать надежные веб-приложения...</p>
+    </article>
+
+    <article class="post-card">
+        <h4><a href="{% url 'blog:post_detail' 2 %}">Шаблоны в Django</a></h4>
+        <p class="post-meta">Опубликовано: 3 декабря 2025</p>
+        <p>Система шаблонов Django позволяет эффективно разделять логику и представление в веб-приложениях...</p>
+    </article>
+
+    <article class="post-card">
+        <h4><a href="{% url 'blog:post_detail' 3 %}">Модели и базы данных</a></h4>
+        <p class="post-meta">Опубликовано: 5 декабря 2025</p>
+        <p>ORM Django предоставляет удобный способ работы с базами данных без написания SQL-запросов...</p>
+    </article>
+</div>
+{% endblock %}

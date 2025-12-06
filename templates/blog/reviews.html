@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы - Мой блог{% endblock %}
+
+{% block content %}
+<div class="reviews-section">
+    <h2>Отзывы</h2>
+
+    <div class="review-form">
+        <h3>Оставить отзыв</h3>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.full_name.id_for_label }}">{{ form.full_name.label }}</label>
+                {{ form.full_name }}
+                {% if form.full_name.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.full_name.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.email.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.text.id_for_label }}">{{ form.text.label }}</label>
+                {{ form.text }}
+                {% if form.text.errors %}
+                    <ul class="errorlist">
+                        {% for error in form.text.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Отправить отзыв</button>
+        </form>
+        <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+            * Отзыв появится на сайте после проверки администратором
+        </p>
+    </div>
+
+    <div class="reviews-list">
+        <h3>Проверенные отзывы</h3>
+        {% if reviews %}
+            {% for review in reviews %}
+                <div class="review-item">
+                    <h4>{{ review.full_name }}</h4>
+                    <p class="review-email">{{ review.email }}</p>
+                    <p class="review-text">{{ review.text|linebreaks }}</p>
+                    <p class="review-date">{{ review.created_at|date:"d.m.Y в H:i" }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: #999; font-style: italic;">Пока нет проверенных отзывов. Будьте первым!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
